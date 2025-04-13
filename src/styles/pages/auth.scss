@@ -1,0 +1,196 @@
+.app_main_cover {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 100dvh;
+
+  .auth_form_cover {
+    width: 50%;
+    height: 100%;
+    padding: 4.6rem 12rem;
+
+    .app_user_logo {
+      display: flex;
+      width: 170px;
+      margin-bottom: 7rem;
+
+      img {
+        width: 170px;
+      }
+    }
+
+    .app_user_heading {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 60px;
+
+      h2 {
+        font-size: 22px;
+        font-weight: $bol;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      p {
+        font-size: 17px;
+        font-weight: $med;
+      }
+    }
+
+    .app_user_form {
+      display: flex;
+      width: 80%;
+
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .app_user_form_inputs {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .app_form_filed_extra {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-top: 13px;
+
+          a {
+            font-size: 15px;
+            font-weight: $dem;
+            color: $btn_bg;
+          }
+        }
+
+        .app_form_filed_btn {
+          display: flex;
+          flex-direction: column;
+          margin-top: 35px;
+        }
+      }
+    }
+
+    .app_user_or_sec {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-top: 60px;
+      width: 80%;
+
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: 0px;
+        width: 100%;
+        height: 1px;
+        background: $line_bg;
+      }
+
+      & > span {
+        position: relative;
+        font-size: 14px;
+        font-weight: $dem;
+        padding: 0 20px;
+        background: $white;
+        z-index: 1;
+      }
+    }
+
+    .app_auth_not_register_link {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      width: 80%;
+
+      @media (max-width: 1024px) {
+        width: 100%;
+      }
+
+      p {
+        font-size: 15px;
+        font-weight: $med;
+
+        a {
+          color: $btn_bg;
+          font-weight: $dem;
+        }
+      }
+    }
+
+    .app_user_social {
+      display: flex;
+      gap: 10px;
+      width: 80%;
+      margin-top: 40px;
+
+      & > button {
+        margin: 0px !important;
+        font-size: 14px !important;
+        border: 1px solid $line_bg !important;
+        box-shadow: none !important;
+        border-radius: 5px !important;
+        font-weight: $dem;
+
+        &:nth-child(2) {
+          border: 1px solid #333333 !important;
+        }
+
+        &:nth-child(3) {
+          border: 1px solid #3b5998 !important;
+        }
+
+        & > div {
+          display: flex;
+          justify-content: center;
+
+          & > div:nth-child(3) {
+            width: auto !important;
+            text-align: center !important;
+          }
+        }
+      }
+    }
+  }
+
+  .app_auth_bg {
+    width: 50%;
+    height: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    p {
+      left: 50%;
+      bottom: 20px;
+      color: $white;
+      position: absolute;
+      font-weight: $reg;
+      font-size: 15px;
+      transform: translateX(-50%);
+
+      & > span {
+        font-weight: $dem;
+        margin-left: 6px;
+      }
+    }
+  }
+}
