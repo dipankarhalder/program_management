@@ -1,0 +1,95 @@
+.app_form_input {
+  display: flex;
+  flex-direction: column;
+
+  & > label {
+    margin-bottom: 6px;
+
+    & > span {
+      font-size: 15px;
+      font-weight: $dem;
+    }
+  }
+
+  input {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    font-size: 15px;
+    font-weight: $dem;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    background: $input_bg;
+    border: 0 solid transparent;
+  }
+
+  & > span.app_input_error {
+    color: $red;
+    font-size: 13px;
+    font-weight: $dem;
+  }
+}
+
+.app_form_checkbox {
+  display: flex;
+
+  label {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+
+    & > input {
+      height: auto;
+      margin-top: 4px;
+    }
+
+    & > span {
+      font-size: 15px;
+      font-weight: $dem;
+    }
+  }
+}
+
+.app_form_btn {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  font-size: 15px;
+  font-weight: $dem;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  border: 0 solid transparent;
+
+  &.btn_actv {
+    color: $white;
+    background: $btn_bg;
+  }
+
+  &.btn_disable {
+    color: $black;
+    background: $btn_disable;
+  }
+
+  .app_disable_spin {
+    display: flex;
+    align-items: center;
+
+    p {
+      color: $black;
+    }
+
+    .app_spinner {
+      border: 2px solid transparent;
+      border-top: 2px solid $black;
+      border-left: 2px solid $black;
+      border-right: 2px solid $black;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      margin: 10px;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
