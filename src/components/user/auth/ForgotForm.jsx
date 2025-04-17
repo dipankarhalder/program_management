@@ -2,13 +2,20 @@ import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { Input } from "../../../shared/Input";
 import { Button } from "../../../shared/Button";
+import { validationRules } from "../../../utils/fieldValidation";
 
 export const ForgotForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const methods = useForm({
     mode: "onBlur",
+    defaultValues: {
+      email: "",
+    },
   });
+  const { handleSubmit, control } = methods;
+  const { isValid } = methods.formState;
+  const btnClass = `app_form_btn ${isSubmitting ? "btn_disable" : "btn_actv"}`;
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -24,30 +31,20 @@ export const ForgotForm = () => {
 
   return (
     <div className="app_user_form">
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormProvider control={control}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             name="email"
             label="Email Address"
             type="email"
-            rules={{
-              required: "Email is required.",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: "Please enter a valid email address.",
-              },
-            }}
+            rules={validationRules.email}
           />
           <div className="app_form_filed_btn">
             <Button
               type="submit"
-              className={
-                isSubmitting
-                  ? "app_form_btn btn_disable"
-                  : "app_form_btn btn_actv"
-              }
+              className={btnClass}
               isSubmitting={isSubmitting}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !isValid}
               ariaLabel="forgot password your account"
             >
               Send link

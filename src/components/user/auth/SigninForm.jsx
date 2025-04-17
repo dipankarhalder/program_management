@@ -4,13 +4,22 @@ import { useForm, FormProvider } from "react-hook-form";
 import { userPath } from "../../../utils/paths";
 import { Input } from "../../../shared/Input";
 import { Button } from "../../../shared/Button";
+import { validationRules } from "../../../utils/fieldValidation";
 
 export const SigninForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const methods = useForm({
     mode: "onBlur",
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: false,
+    },
   });
+  const { handleSubmit, control } = methods;
+  const { isValid } = methods.formState;
+  const btnClass = `app_form_btn ${isSubmitting ? "btn_disable" : "btn_actv"}`;
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -26,32 +35,20 @@ export const SigninForm = () => {
 
   return (
     <div className="app_user_form">
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormProvider control={control}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="app_user_form_inputs">
             <Input
               name="email"
               label="Email Address"
               type="email"
-              rules={{
-                required: "Email is required.",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "Please enter a valid email address.",
-                },
-              }}
+              rules={validationRules.email}
             />
             <Input
               name="password"
               label="Password"
               type="password"
-              rules={{
-                required: "Password is required.",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters long.",
-                },
-              }}
+              rules={validationRules.password}
             />
           </div>
           <div className="app_form_filed_extra">
@@ -68,13 +65,9 @@ export const SigninForm = () => {
           <div className="app_form_filed_btn">
             <Button
               type="submit"
-              className={
-                isSubmitting
-                  ? "app_form_btn btn_disable"
-                  : "app_form_btn btn_actv"
-              }
+              className={btnClass}
               isSubmitting={isSubmitting}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !isValid}
               ariaLabel="Sign in to your account"
             >
               Sign In
