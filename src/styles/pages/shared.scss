@@ -30,13 +30,31 @@
   }
 }
 
+.app_custom_indicator {
+  width: 20px;
+  height: 20px;
+  position: relative;
+
+  &.app_active_icon {
+    svg path {
+      stroke: $btn_bg;
+    }
+  }
+}
+.app_visually_hidden {
+  display: none;
+  pointer-events: none;
+}
+
 .app_form_checkbox {
   display: flex;
 
   label {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: flex-start;
+    cursor: pointer;
     gap: 10px;
 
     & > input {
@@ -47,6 +65,19 @@
     & > span {
       font-size: 15px;
       font-weight: $dem;
+      height: 20px;
+      line-height: 22px;
+
+      &.app_actv_color {
+        color: $btn_bg;
+      }
+
+      &.app_custom_indicator {
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
     }
   }
 }
