@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
+import { userPath } from "../../../utils/paths";
 import { Input } from "../../../shared/Input";
 import { Button } from "../../../shared/Button";
 import { validationRules } from "../../../utils/fieldValidation";
 
 export const SignupForm = () => {
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const methods = useForm({
@@ -26,6 +29,7 @@ export const SignupForm = () => {
     try {
       console.log("Form data:", data);
       await new Promise((resolve) => setTimeout(resolve, 2000));
+      navigate(`${userPath.user}${userPath.emailverify}`);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
