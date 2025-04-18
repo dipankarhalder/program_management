@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { userPath } from "../../../utils/paths";
 import { Input } from "../../../shared/Input";
@@ -7,6 +7,7 @@ import { Button } from "../../../shared/Button";
 import { validationRules } from "../../../utils/fieldValidation";
 
 export const SigninForm = () => {
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const methods = useForm({
@@ -26,6 +27,7 @@ export const SigninForm = () => {
     try {
       console.log("Form data:", data);
       await new Promise((resolve) => setTimeout(resolve, 2000));
+      navigate(`${userPath.user}${userPath.dashboard}`);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
